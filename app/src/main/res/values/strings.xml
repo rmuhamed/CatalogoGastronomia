@@ -1,5 +1,200 @@
 <resources>
     <string name="app_name">Gastronomía</string>
+
+    <string name="go_back">VOLVER</string>
+    <string name="alert_title">¡Atención!</string>
+    <string name="associated_actions">Desplegar acciones asociadas</string>
+    <string name="ready">Listo</string>
+    <string name="OK">OK</string>
+    <string name="CANCEL">CANCELAR</string>
+    <string name="X">X</string>
+    <string name="loading">Cargando &#8230;</string>
+    <string name="choose_one">"Seleccionar uno &#8230;"</string>
+    <string name="kilometers">km</string>
+    <string name="close">Cerrar</string>
+    <!-- Acitivy Titles -->
+    <string name="activity_home_name">Home</string>
+    <string name="activity_settings_name">AJUSTES GENERALES</string>
+    <string name="activity_chose_your_card_name">Seleccioná tu tarjeta</string>
+    <string name="activity_app_intro_name">Introducción</string>
+    <string name="activity_refine_filters">FILTROS DE BÚSQUEDA</string>
+
+    <!-- Navigation Drawer -->
+    <string name="drawer_facebook_option">Facebook</string>
+    <string name="drawer_twitter_option">Twitter</string>
+    <string name="drawer_google_plus_option">Google+</string>
+    <string name="drawer_settings_option">Ajustes generales</string>
+    <string name="app_drawer">Menú desplegable</string>
+    <string name="dummy_drawer_list_item">Drawer list item</string>
+    <string name="open_drawer">Desplegar menú</string>
+    <string name="close_drawer">Cerrar menú</string>
+
+    <!-- View Pager -->
+    <string name="viewpager_close_to_me_section">Cerca mío</string>
+    <string name="viewpager_categories">Categorías</string>
+    <string name="viewpager_my_favorites">Favoritos</string>
+    <string name="viewpager_outstanding">Destacados</string>
+    <string name="viewpager_history">Ult. búsquedas</string>
+
+    <!-- Actionbar - Search -->
+    <string name="search_hint">Buscar</string>
+    <string name="map_hint">Mapa</string>
+    <string name="action_bar_search_hint">¿Qué buscás?</string>
+
+    <!-- Activity - Home Activity - Categories Fragment -->
+    <string name="category_food_title">GASTRONOMÍA</string>
+    <string name="category_food_subtitle">liberá tus sentidos</string>
+    <string name="category_entertainment_title">ENTRETENIMIENTO</string>
+    <string name="category_entertainment_subtitle">diversión asegurada</string>
+    <string name="category_personalcare_title">CUIDADO PERSONAL</string>
+    <string name="category_personalcare_subtitle">sentite libre</string>
+    <string name="category_tourism_title">TURÍSMO</string>
+    <string name="category_tourism_subtitle">conocé el mundo</string>
+    <string name="category_fashion_title">MODA</string>
+    <string name="category_fashion_subtitle">lucí tu belleza</string>
+    <string name="other_category_title">MÁS CATEGORÍAS</string>
+    <string name="other_category_subtitle">lugares por visitar</string>
+
+    <!-- Activity - SettingsActivity -->
+    <string name="choose_your_card">Seleccioná tu tarjeta</string>
+    <string name="settings">Configuraciones</string>
+    <string name="app_intro">Intro de bienvenida</string>
+    <string name="notifications_and_advertisements">Avisos y Notificaciones</string>
+    <string name="premium_card">Premium</string>
+    <string name="classic_card">Classic</string>
+
+    <!-- Acitivty - SearchResultsActivity -->
+    <string name="no_result_for_search">mmm &#8230; No tenemos nada con esa búqueda</string>
+    <string name="no_result_for_search_another_try">¡Otra chance más!</string>
+    <string name="without_results">No se encontraron resultados</string>
+
+    <!-- APP Introduction Activity -->
+    <string name="begin_your_experience">COMENZÁ TU EXPERIENCIA</string>
+    <string name="app_intro_firstscreen_label">\"El camino recorrido es mucho más importante \n que el solo llegar\"</string>
+    <string name="app_intro_secondscreen_label">\"Cultura es lo que queda cuando \n se olvida todo lo que se aprendió\"</string>
+    <string name="app_intro_thirdscreen_label">\"La belleza comienza con la decisión \n de ser uno mismo\"</string>
+    <string name="app_intro_fourthscreen_label">\"No existe modernidad \n sin una buena tradición\"</string>
+    <string name="app_intro_fifthscreen_label">\"La riqueza del regalo perfecto \n radica en el propio presente\"</string>
+
+    <!-- Chose Your Card Activity -->
+    <string name="premium_card_description">Tarjeta Club La Nación PREMIMUM</string>
+    <string name="classic_card_description">Tarjeta Club La Nación CLASSIC</string>
+
+    <!-- AsyncTask ProgressDialogs -->
+    <string name="downloaing_outstanding">Cargando beneficios destacados</string>
+    <string name="downloaing_favourites">Obteniendo tus favoritos</string>
+    <string name="downloaing_close_to_me">Cargando beneficios cerca tuyo</string>
+    <string name="searching">Buscando</string>
+
+    <!-- Listing -->
+    <string name="dummy_establishment_name">LA ESTANCIA - ASADOR CRIOLLO</string>
+    <string name="dummy_establishment_address">LA ESTANCIA </string>
+    <string name="dummy_establishment_town">Capital Federal</string>
+    <string name="dummy_establishment_location_distance">0.4m</string>
+    <string name="dummy_establishment_hour">Lunes a Viernes</string>
+    <string name="dummy_benefit_type">20%</string>
+    <string name="dummy_benefit_establishment">BURGUER KING</string>
+    <string name="dummy_benefit_description">Sobre el total de tu factura</string>
+    <string name="dummy_benefit_type_of_card">Premium - Classic</string>
+    <string name="dummy_benefit_frequency">Todos los días</string>
+    <string name="dummy_benefit_url">burgerking.com.ar</string>
+    <string name="dummy_benefit_mail">mail@burgerking.com.ar</string>
+    <string name="dummy_inline_establishment_address">Vedia 3626 - Capital Federal</string>
+    <string name="dummy_bases_title">2x1 ¡En Sundaes!</string>
+    <string name="dummy_benefit_aliance">+10% HSBC</string>
+    <string name="dummy_bases_condition">Beneficio valido presentando la credencial de socio Club La Nación PREMIUM o Club La Nación y documento que acredite identidad antes de solicitar la factura. Beneficio 2x1 en Sundaes todos los días, en todas las formas de pago que el establecimiento acepte al público en general. Dichos descuentos y beneficios no se superponen con otros en los que intervenga otra marca o programa. Los datos y ofertas mencionados revisten un carácter exclusivamente informativo y en modo alguno suponen que los establecimientos, productos y/o servicios indicados, y la calidad de los mismos, son responsabilidad de SA LA NACION. Asimismo, los beneficios que se detallan están vigentes a la fecha de publicación pudiendo estar sujetos a futuras modificaciones. El precio promedio se indica al sólo efecto referencial, no siendo vinculante. El precio que efectivamente deberá pagar el consumidor dependerá de los platos y bebidas que consuma y conforme la lista de precios</string>
+    <string name="dummy_benefit_atribute"> - Comida Rápida</string>
+    <string name="locationbutton_content_description">Distancia al beneficio</string>
+    <string name="refine_search">REFINAR BÚSQUEDA</string>
+    <string name="refine_search_content_description">Refinar búsqueda</string>
+    <string name="error_during_download_alert_title">Parece que tenemos incovenientes!</string>
+    <string name="error_during_download_alert_message">No pudimos recuperar la información. Intentá nuevamente en unos momentos!</string>
+
+    <!-- Fragment - MyFavorites -->
+    <string name="without_favorites">No se han añadido favoritos</string>
+    <string name="not_saved_favorites_label">¡Ups&#8230;! Aún no guardaste nada \n en tu lista de favoritos.</string>
+    <string name="how_to_add_favorites_label">Para agregar un comercio a tu lista de favoritos presioná el botón ♥ \n ubicado al pie de cada beneficio</string>
+    <string name="empty_favorites_list">Vaciar lista</string>
+    <string name="alert_erased_favourites">Vaciaste tu lista de favoritos. ¡Volvé a llenarla!</string>
+    <string name="alert_erase_favourites_confirm">¿Seguro que querés borrar tus favoritos?</string>
+    <string name="erase_favourites_content_description">Eliminar los favoritos</string>
+
+    <!-- InfoWindow -->
+    <string name="dummy_infowindow_title">TÍTULO</string>
+    <string name="dummy_infowindow_category_name">Categoría</string>
+    <string name="dummy_infowindow_address">Vedia 3626</string>
+    <string name="dummy_infowindow_phone">Tel: 08001111111</string>
+    <string name="dummy_infowindow_distance_to_place">1.2 km</string>
+    <string name="infowindow_more_info">+ INFO</string>
+    <string name="infowindow_your_position">Tu ubicación actual</string>
+    <string name="phone_contentdescription">Teléfono</string>
+
+    <!-- ViewItem -->
+    <string name="establishment_logo_contentdescription">Logo del establecimiento</string>
+    <string name="establishment_beneifit_contentdescription">Imagen correspondiente al beneficio</string>
+    <string name="add_to_your_favourites">Favorito</string>
+    <string name="share_it">Compartilo</string>
+    <string name="description">Descripción</string>
+    <string name="statements_and_conditions">Bases y condiciones</string>
+    <string name="alert_removed_favourite">Quitaste este establecimiento de tu lista de favoritos</string>
+    <string name="alert_added_favourite">Agregaste este establecimiento a tu lista de favoritos</string>
+    <string name="title_of_item_to_be_shared">Aprovechen estos descuentos de Club LA NACION </string>
+    <string name="text_of_item_to_be_shared">Aprovechen estos descuentos de Club LA NACION \n http://club.lanacion.com.ar/beneficio?id=%1$s</string>
+    <string name="share_intent_options_title">¿Cómo deseas compartirlo?</string>
+    <string name="services">SERVICIOS</string>
+    <string name="smoke_service_contentdescription">Permitido fumar</string>
+    <string name="horse_service_contentdescription">Entretenimento</string>
+    <string name="parking_service_contentdescription">Posee estacionamiento privado</string>
+    <string name="phone_service_contentdescription">Posee teléfono. Reservas</string>
+    <string name="world_service_contentdescription">Internacional</string>
+    <string name="delivery_service_contentdescription">Menú ejecutivo</string>
+    <string name="wifi_service_contentdescription">El establecimiento posee Wifi</string>
+    <string name="copa_service_contentdescription">Copa</string>
+    <string name="without_description">Sin descripción</string>
+    <string name="map_to_fullscreen">Visualizar el mapa en pantalla completa</string>
+
+    <!-- Analytics -->
+    <string name="HOME">HOME</string>
+    <string name="SEARCH">LUPA Search</string>
+    <string name="LISTING">LISTING</string>
+    <string name="CATEG">Categ</string>
+    <string name="CLOSE_TO_ME">CERCA MIO</string>
+    <string name="FAVOURITES">FAVORITOS</string>
+    <string name="OUTSTANDINGS">DESTACADOS</string>
+    <string name="VIEW_ITEM">ITEM VIEW</string>
+    <string name="ADJUSTEMENTS">AJUSTES</string>
+    <string name="SHARE_BENEFIT_CATEGORY">Compartir</string>
+    <string name="SHARE_BENEFIT_ACTION">Compartir</string>
+    <string name="FAVOURITE_CATEGORY">Favoritos</string>
+    <string name="FAVOURITE_ACTION_ADD">Agregar</string>
+    <string name="FAVOURITE_ACTION_REMOVE">Quitar</string>
+
+    <!-- Validations -->
+    <string name="no_internet_connection_title">Atención!</string>
+    <string name="no_internet_connection_message">Es posible que tu conexión a internet no esté funcionando bien</string>
+    <string name="no_gps_enabled_title">Atención!</string>
+    <string name="no_gps_enabled_message">Activa la ubicación en la configuración de tu dispositivo para encontrar los beneficios más cerca tuyo</string>
+
+    <!-- Activity - Refine filters -->
+    <string name="refine_filters_title">FILTROS DE BÚSQUEDA</string>
+    <string name="remove_filters_applied">Quitar filtros seleccionados</string>
+    <string name="benefit_type">Tipo de Beneficio</string>
+    <string name="frequency">Frecuencia</string>
+    <string name="card">Tarjeta</string>
+    <string name="category">Categoría</string>
+    <string name="subcategory">Sub-Categoría</string>
+    <string name="location">Ubicación</string>
+    <string name="circuit">Circuíto</string>
+    <string name="exclusive_benefits">Beneficios exclusivos</string>
+    <string name="refine_filters_apply">APLICAR FILTROS</string>
+    <string name="dummy_refine_filter_criteria_item_label">3 cutoas HSBC</string>
+    <string name="dummy_refine_filter_criteria_count">324</string>
+    <string name="alert_dialog_clearfilters_title">¡Vas a limpiar los filtros aplicados!</string>
+    <string name="alert_dialog_clearfilters_message">Serán removidos y volverás a la pantalla anterior. \n ¿Estás seguro?</string>
+
+    <!-- Activity - ListingMap -->
+    <string name="center_over_user_location">Visualizar mi posición</string>
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
