@@ -5,7 +5,7 @@ import android.content.Context;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonRequest;
-import com.rmuhamed.catalogogastronomia.model.SearchResult;
+import com.rmuhamed.catalogogastronomia.MODEL.SearchResult;
 
 /**
  * Created by rmuhamed on 08/10/2015.

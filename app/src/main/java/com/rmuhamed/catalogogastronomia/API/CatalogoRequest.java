@@ -13,7 +13,7 @@ import com.android.volley.toolbox.JsonRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.rmuhamed.catalogogastronomia.API.utils.StreamToStringConverter;
-import com.rmuhamed.catalogogastronomia.model.SearchResult;
+import com.rmuhamed.catalogogastronomia.MODEL.SearchResult;
 
 import java.io.UnsupportedEncodingException;
 

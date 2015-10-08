@@ -13,8 +13,8 @@ import com.android.volley.VolleyError;
 import com.rmuhamed.catalogogastronomia.R;
 import com.rmuhamed.catalogogastronomia.API.CatalogoAPI;
 import com.rmuhamed.catalogogastronomia.API.CatalogoAPIListener;
-import com.rmuhamed.catalogogastronomia.model.Branch;
-import com.rmuhamed.catalogogastronomia.model.SearchResult;
+import com.rmuhamed.catalogogastronomia.MODEL.Branch;
+import com.rmuhamed.catalogogastronomia.MODEL.SearchResult;
 
 import java.util.List;
 

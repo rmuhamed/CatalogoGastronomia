@@ -1,7 +1,7 @@
 package com.rmuhamed.catalogogastronomia.API;
 
 import com.android.volley.VolleyError;
-import com.rmuhamed.catalogogastronomia.model.SearchResult;
+import com.rmuhamed.catalogogastronomia.MODEL.SearchResult;
 
 /**
  * Created by rmuhamed on 08/10/2015.
