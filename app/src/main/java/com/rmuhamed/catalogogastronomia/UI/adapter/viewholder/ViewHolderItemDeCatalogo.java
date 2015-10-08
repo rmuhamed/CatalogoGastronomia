@@ -28,8 +28,13 @@ public class ViewHolderItemDeCatalogo extends RecyclerView.ViewHolder {
         RelativeLayout establishmentContainer = (RelativeLayout) this.itemView.findViewById(R.id.listing_item_establishment_info_container);
 
         TextView establishmentNameLabel = (TextView) this.itemView.findViewById(R.id.listing_item_establishment_name_label);
+        establishmentNameLabel.setText(unBranch.getName());
+
         TextView establishmentTownLabel = (TextView) this.itemView.findViewById(R.id.listing_item_establishment_town_label);
+        establishmentTownLabel.setText(unBranch.getLocation());
+
         TextView establishmentAddressLabel = (TextView) this.itemView.findViewById(R.id.listing_item_establishment_address_label);
+        establishmentAddressLabel.setText(String.format("%s %s", unBranch.getStreet(), unBranch.getStreetNumber()));
 
         //ProgressBar progress = (ProgressBar) this.itemView.findViewById(R.id.listing_item_image_progress);
 
