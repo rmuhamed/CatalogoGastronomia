@@ -17,10 +17,13 @@ import com.rmuhamed.catalogogastronomia.API.CatalogoAPI;
 import com.rmuhamed.catalogogastronomia.API.CatalogoAPIListener;
 import com.rmuhamed.catalogogastronomia.MODEL.Branch;
 import com.rmuhamed.catalogogastronomia.MODEL.SearchResult;
+import com.rmuhamed.catalogogastronomia.UI.adapter.CatalogoAdapter;
 
 import java.util.List;
 
 public class CatalogoActivity extends AppCompatActivity implements CatalogoAPIListener {
+
+    private RecyclerView recycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,11 @@ public class CatalogoActivity extends AppCompatActivity implements CatalogoAPILi
 //            }
 //        });
 
-        RecyclerView recList = (RecyclerView) findViewById(R.id.catalogo_list);
-        recList.setHasFixedSize(true);
+        this.recycler = (RecyclerView) findViewById(R.id.catalogo_list);
+
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
+        this.recycler.setLayoutManager(llm);
 
         CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, this);
     }
@@ -71,7 +74,9 @@ public class CatalogoActivity extends AppCompatActivity implements CatalogoAPILi
     @Override
     public void onSuccess(SearchResult response) {
         List<Branch> branches = response.getBranches();
-        branches.size();
+
+
+        this.recycler.setAdapter(new CatalogoAdapter(this, branches));
     }
 
     @Override
