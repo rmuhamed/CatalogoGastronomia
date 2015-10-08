@@ -9,9 +9,16 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.volley.VolleyError;
 import com.rmuhamed.catalogogastronomia.R;
+import com.rmuhamed.catalogogastronomia.API.CatalogoAPI;
+import com.rmuhamed.catalogogastronomia.API.CatalogoAPIListener;
+import com.rmuhamed.catalogogastronomia.model.Branch;
+import com.rmuhamed.catalogogastronomia.model.SearchResult;
 
-public class CatalogoActivity extends AppCompatActivity {
+import java.util.List;
+
+public class CatalogoActivity extends AppCompatActivity implements CatalogoAPIListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,8 @@ public class CatalogoActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, this);
     }
 
     @Override
@@ -49,5 +58,16 @@ public class CatalogoActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSuccess(SearchResult response) {
+        List<Branch> branches = response.getBranches();
+        branches.size();
+    }
+
+    @Override
+    public void onError(VolleyError error) {
+
     }
 }
