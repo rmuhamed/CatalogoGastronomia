@@ -21,7 +21,7 @@ import com.rmuhamed.catalogogastronomia.UI.adapter.CatalogoAdapter;
 
 import java.util.List;
 
-public class CatalogoActivity extends AppCompatActivity implements CatalogoAPIListener {
+public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener {
 
     private RecyclerView recycler;
 

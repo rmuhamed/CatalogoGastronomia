@@ -1,4 +1,4 @@
-package com.rmuhamed.catalogogastronomia.UI;
+package com.rmuhamed.catalogogastronomia;
 
 import android.app.Application;
 import android.content.Context;
