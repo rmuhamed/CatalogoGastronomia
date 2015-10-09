@@ -3,6 +3,7 @@ package com.rmuhamed.catalogogastronomia.UI.adapter.viewholder;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,7 +35,10 @@ public class ViewHolderItemDeCatalogo extends RecyclerView.ViewHolder {
         ImageView imagen = (ImageView) this.itemView.findViewById(R.id.listing_item_image);
 
         if (unBranch.getImagesFather()!=null && !unBranch.getImagesFather().isEmpty()) {
-            CatalogoApplication.class.cast(this.contexto.getApplicationContext()).showImage(unBranch.getImagesFather().get(0).getURL(), imagen);
+            int width = ((WindowManager) this.contexto.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
+            String imageRemoteUrl = String.format("%s?width=%d", unBranch.getImagesFather().get(0).getURL(), width) ;
+
+            CatalogoApplication.class.cast(this.contexto.getApplicationContext()).showImage(imageRemoteUrl, imagen);
         }
     }
 }

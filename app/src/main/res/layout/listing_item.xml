@@ -4,15 +4,35 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
     card_view:cardCornerRadius="0dp"
     card_view:cardElevation="8dp"
     card_view:cardUseCompatPadding="true">
 
     <LinearLayout
         android:id="@+id/listing_item_container"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/listing_item_establishment_name_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/dummy_establishment_name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/listing_item_image"

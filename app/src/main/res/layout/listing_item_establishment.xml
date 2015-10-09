@@ -3,32 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/listing_item_establishment_info_container"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
-
-    <TextView
-        android:id="@+id/listing_item_establishment_name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
-        android:ellipsize="end"
-        android:singleLine="true"
-        android:text="@string/dummy_establishment_name"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+    android:layout_height="wrap_content"
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/listing_item_establishment_address_label"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/listing_item_establishment_name_label"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="20dp"
         android:background="@android:color/transparent"
@@ -40,7 +22,7 @@
 
     <TextView
         android:id="@+id/listing_item_establishment_town_label"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/listing_item_establishment_address_label"
         android:layout_below="@+id/listing_item_establishment_address_label"
