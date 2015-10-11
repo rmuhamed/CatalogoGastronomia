@@ -32,7 +32,8 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     private RecyclerView recycler;
 
     private List<Branch> branches;
-    private FloatingActionButton orderButton;
+    private View orderButton;
+    private View searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +48,15 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        this.orderButton = (FloatingActionButton) this.findViewById(R.id.order_button);
+        this.orderButton = this.findViewById(R.id.order_button);
         this.orderButton.setOnClickListener(this);
+
+        this.searchButton = this.findViewById(R.id.search_button);
+        this.searchButton.setOnClickListener(this);
 
         this.recycler = (RecyclerView) this.findViewById(R.id.catalogo_list);
         this.recycler.setLayoutManager(layoutManager);
         this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
-
         this.recycler.addOnScrollListener(new CustomOnScrollListener(layoutManager, this));
 
         this.obtenerCatalogoPaginado(0);
@@ -62,7 +65,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_catalogo, menu);
+        this.getMenuInflater().inflate(R.menu.menu_catalogo, menu);
         return true;
     }
 
@@ -112,9 +115,17 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
 
     @Override
     public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.search_button:
+                break;
 
-        Collections.sort(this.branches, new ElementoCatalagoComparator());
-        this.renderizarListado();
+            case R.id.order_button:
+                Collections.sort(this.branches, new ElementoCatalagoComparator());
+                this.renderizarListado();
+                break;
+        }
+
+
 
     }
 }

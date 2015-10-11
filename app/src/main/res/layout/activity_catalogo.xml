@@ -46,24 +46,25 @@
         android:layout_height="wrap_content"
 
         android:layout_gravity="bottom|right">
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/search"
-        app:fabSize="normal" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/order_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/search_button"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/sorting"
-        app:fabSize="normal" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/search"
+            app:fabSize="normal" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/order_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_button"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/sorting"
+            app:fabSize="normal" />
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
