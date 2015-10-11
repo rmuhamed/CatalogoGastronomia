@@ -1,11 +1,13 @@
 package com.rmuhamed.catalogogastronomia.UI;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.android.volley.VolleyError;
 import com.rmuhamed.catalogogastronomia.API.CatalogoAPI;
@@ -16,18 +18,21 @@ import com.rmuhamed.catalogogastronomia.R;
 import com.rmuhamed.catalogogastronomia.UI.adapter.CatalogoAdapter;
 import com.rmuhamed.catalogogastronomia.UI.listener.CustomOnScrollListener;
 import com.rmuhamed.catalogogastronomia.UI.listener.OnNewPageToBeDownloadedListener;
+import com.rmuhamed.catalogogastronomia.UTILS.ElementoCatalagoComparator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by rmuhamed on 09/10/2015.
  */
-public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener, OnNewPageToBeDownloadedListener {
+public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener, OnNewPageToBeDownloadedListener, View.OnClickListener {
 
     private RecyclerView recycler;
 
     private List<Branch> branches;
+    private FloatingActionButton orderButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,10 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        this.recycler = (RecyclerView) findViewById(R.id.catalogo_list);
+        this.orderButton = (FloatingActionButton) this.findViewById(R.id.order_button);
+        this.orderButton.setOnClickListener(this);
+
+        this.recycler = (RecyclerView) this.findViewById(R.id.catalogo_list);
         this.recycler.setLayoutManager(layoutManager);
         this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
 
@@ -79,7 +87,13 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         }
 
         this.branches.addAll(response.getBranches());
-        this.recycler.getAdapter().notifyDataSetChanged();
+        this.renderizarListado();
+    }
+
+    private void renderizarListado() {
+        if(this.recycler!=null && this.recycler.getAdapter()!=null) {
+            this.recycler.getAdapter().notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -94,5 +108,13 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     @Override
     public void onNewPageToLoad(int page) {
         this.obtenerCatalogoPaginado(page);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        Collections.sort(this.branches, new ElementoCatalagoComparator());
+        this.renderizarListado();
+
     }
 }
