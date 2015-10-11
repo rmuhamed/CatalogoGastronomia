@@ -1,53 +1,54 @@
 package com.rmuhamed.catalogogastronomia.UI;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.volley.VolleyError;
-import com.rmuhamed.catalogogastronomia.R;
 import com.rmuhamed.catalogogastronomia.API.CatalogoAPI;
 import com.rmuhamed.catalogogastronomia.API.CatalogoAPIListener;
 import com.rmuhamed.catalogogastronomia.MODEL.Branch;
 import com.rmuhamed.catalogogastronomia.MODEL.SearchResult;
+import com.rmuhamed.catalogogastronomia.R;
 import com.rmuhamed.catalogogastronomia.UI.adapter.CatalogoAdapter;
+import com.rmuhamed.catalogogastronomia.UI.listener.CustomOnScrollListener;
+import com.rmuhamed.catalogogastronomia.UI.listener.OnNewPageToBeDownloadedListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener {
+/**
+ * Created by rmuhamed on 09/10/2015.
+ */
+public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener, OnNewPageToBeDownloadedListener {
 
     private RecyclerView recycler;
+
+    private List<Branch> branches;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalogo);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        this.setContentView(R.layout.activity_catalogo);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar);
+        this.setSupportActionBar(toolbar);
+
+        this.branches = new ArrayList<>();
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         this.recycler = (RecyclerView) findViewById(R.id.catalogo_list);
+        this.recycler.setLayoutManager(layoutManager);
+        this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        this.recycler.setLayoutManager(llm);
+        this.recycler.addOnScrollListener(new CustomOnScrollListener(layoutManager, this));
 
-        CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, this);
+        this.obtenerCatalogoPaginado(0);
     }
 
     @Override
@@ -73,14 +74,25 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
 
     @Override
     public void onSuccess(SearchResult response) {
-        List<Branch> branches = response.getBranches();
+        if(this.branches==null){
+            this.branches = new ArrayList<>();
+        }
 
-
-        this.recycler.setAdapter(new CatalogoAdapter(this, branches));
+        this.branches.addAll(response.getBranches());
+        this.recycler.getAdapter().notifyDataSetChanged();
     }
 
     @Override
     public void onError(VolleyError error) {
 
+    }
+
+    private void obtenerCatalogoPaginado(int pagina){
+        CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, pagina, this);
+    }
+
+    @Override
+    public void onNewPageToLoad(int page) {
+        this.obtenerCatalogoPaginado(page);
     }
 }

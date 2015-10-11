@@ -11,11 +11,12 @@ import com.rmuhamed.catalogogastronomia.MODEL.SearchResult;
  * Created by rmuhamed on 08/10/2015.
  */
 public class CatalogoAPI {
-    public static final String BASE_URL = "http://api.club.lanacion.com.ar/search?facet=categoria|gastronomia&Page=1&PageSize=15";
+    public static final String BASE_URL = "http://api.club.lanacion.com.ar/search?facet=categoria|gastronomia&Page=%d&PageSize=8";
 
 
-    public static void obtenerCatalogo(String URL, Context contexto, final CatalogoAPIListener listener){
-        JsonRequest jsonRequest = new CatalogoRequest(contexto, URL, null,
+    public static void obtenerCatalogo(String URL, Context contexto, int paginaACargar, final CatalogoAPIListener listener){
+        String url = String.format(URL, paginaACargar);
+        JsonRequest jsonRequest = new CatalogoRequest(contexto, url, null,
                 new Response.Listener<SearchResult>() {
 
                     @Override
