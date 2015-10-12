@@ -84,7 +84,7 @@
     <string name="downloaing_outstanding">Cargando beneficios destacados</string>
     <string name="downloaing_favourites">Obteniendo tus favoritos</string>
     <string name="downloaing_close_to_me">Cargando beneficios cerca tuyo</string>
-    <string name="searching">Buscando</string>
+    <string name="searching">Buscando...</string>
 
     <!-- Listing -->
     <string name="dummy_establishment_name">LA ESTANCIA - ASADOR CRIOLLO</string>

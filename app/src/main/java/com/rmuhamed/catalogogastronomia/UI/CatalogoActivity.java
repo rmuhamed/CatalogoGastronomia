@@ -16,8 +16,13 @@ import com.rmuhamed.catalogogastronomia.MODEL.Branch;
 import com.rmuhamed.catalogogastronomia.MODEL.SearchResult;
 import com.rmuhamed.catalogogastronomia.R;
 import com.rmuhamed.catalogogastronomia.UI.adapter.CatalogoAdapter;
+import com.rmuhamed.catalogogastronomia.UI.asynctask.SearchTask;
+import com.rmuhamed.catalogogastronomia.UI.asynctask.SortTask;
 import com.rmuhamed.catalogogastronomia.UI.listener.CustomOnScrollListener;
 import com.rmuhamed.catalogogastronomia.UI.listener.OnNewPageToBeDownloadedListener;
+import com.rmuhamed.catalogogastronomia.UI.listener.SearchTaskListener;
+import com.rmuhamed.catalogogastronomia.UI.listener.SortTaskListener;
+import com.rmuhamed.catalogogastronomia.UTILS.AsyncTaskUtils;
 import com.rmuhamed.catalogogastronomia.UTILS.ElementoCatalagoComparator;
 
 import java.util.ArrayList;
@@ -27,13 +32,15 @@ import java.util.List;
 /**
  * Created by rmuhamed on 09/10/2015.
  */
-public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener, OnNewPageToBeDownloadedListener, View.OnClickListener {
+public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener, OnNewPageToBeDownloadedListener, View.OnClickListener, SearchTaskListener, SortTaskListener {
 
     private RecyclerView recycler;
 
     private List<Branch> branches;
     private View orderButton;
     private View searchButton;
+    private SearchTask searchTask;
+    private SortTask sortTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,27 +67,6 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         this.recycler.addOnScrollListener(new CustomOnScrollListener(layoutManager, this));
 
         this.obtenerCatalogoPaginado(0);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        this.getMenuInflater().inflate(R.menu.menu_catalogo, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -117,15 +103,35 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.search_button:
+                this.doSearch();
                 break;
 
             case R.id.order_button:
-                Collections.sort(this.branches, new ElementoCatalagoComparator());
-                this.renderizarListado();
+                this.doSort();
                 break;
         }
+    }
 
+    @Override
+    public void searchDone(List<Branch> branches) {
 
+    }
 
+    @Override
+    public void sortDone(List<Branch> branc) {
+        this.renderizarListado();
+    }
+
+    private void doSort() {
+        if(AsyncTaskUtils.isPossibleToLaunchTask(this.sortTask)){
+            this.sortTask = new SortTask(this, this.branches, this);
+            this.sortTask.execute();
+        }
+    }
+
+    private void doSearch() {
+
+        //this.searchTask = new SearchTask(this, this.branches, this);
+        //this.searchTask.execute();
     }
 }

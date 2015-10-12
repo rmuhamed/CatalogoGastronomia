@@ -258,7 +258,14 @@ public class Branch implements Parcelable{
 	@Override
 	public boolean equals(Object obj) {
 		Branch aBranch = (Branch) obj;
-		boolean areEquals = aBranch.getBranchId().equals(this.getBranchId());
+
+		boolean areTheSame = aBranch.getName().equalsIgnoreCase(this.getName());
+		boolean isPartOf = false;
+		if(!areTheSame){
+			isPartOf = aBranch.getName().contains(this.getName());
+		}
+
+		boolean areEquals = areTheSame || isPartOf;
 		
 		return areEquals;
 	}
