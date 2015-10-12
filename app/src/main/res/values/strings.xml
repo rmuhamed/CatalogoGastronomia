@@ -285,4 +285,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="request_to_branches_with_error">Tenemos incovenientes para presentarte más establecimientos...</string>
 </resources>

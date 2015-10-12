@@ -40,9 +40,12 @@ public class Branch implements Parcelable{
 			return new Branch[size];
 		}
 	};
+
+	public Branch(){
+	}
 	
 	@SuppressWarnings("unchecked")
-	public Branch(Parcel in) {
+		public Branch(Parcel in) {
 		this.FatherId = in.readString();
 		this.FatherName = in.readString();
 		this.BranchId = in.readString();

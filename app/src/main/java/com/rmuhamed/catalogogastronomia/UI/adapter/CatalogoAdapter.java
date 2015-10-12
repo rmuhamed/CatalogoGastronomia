@@ -42,7 +42,7 @@ public class CatalogoAdapter extends RecyclerView.Adapter<ViewHolderItemDeCatalo
                 holder.mostrarItemDelCatalogo(unBranch);
             }
         } catch (Exception e) {
-            Log.e(LOG_TAG, "Error al mostrar viewHolder" + e.getMessage());
+            Log.e(LOG_TAG+" "+"onBindViewHolder", "Error al mostrar viewHolder" + e.getMessage());
         }
     }
 
@@ -52,7 +52,7 @@ public class CatalogoAdapter extends RecyclerView.Adapter<ViewHolderItemDeCatalo
         if(this.branchList!=null && !this.branchList.isEmpty()){
             count = this.branchList.size();
         }else{
-            Log.e(LOG_TAG, "La lista es nula o vacía");
+            Log.e(LOG_TAG+" "+"getItemCount", "La lista es nula o vacía");
         }
 
         return count;

@@ -1,17 +1,18 @@
 package com.rmuhamed.catalogogastronomia.UI;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.android.volley.VolleyError;
 import com.rmuhamed.catalogogastronomia.API.CatalogoAPI;
 import com.rmuhamed.catalogogastronomia.API.CatalogoAPIListener;
+import com.rmuhamed.catalogogastronomia.API.SingletonRequestQueue;
 import com.rmuhamed.catalogogastronomia.MODEL.Branch;
 import com.rmuhamed.catalogogastronomia.MODEL.SearchResult;
 import com.rmuhamed.catalogogastronomia.R;
@@ -23,17 +24,15 @@ import com.rmuhamed.catalogogastronomia.UI.listener.OnNewPageToBeDownloadedListe
 import com.rmuhamed.catalogogastronomia.UI.listener.SearchTaskListener;
 import com.rmuhamed.catalogogastronomia.UI.listener.SortTaskListener;
 import com.rmuhamed.catalogogastronomia.UTILS.AsyncTaskUtils;
-import com.rmuhamed.catalogogastronomia.UTILS.ElementoCatalagoComparator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by rmuhamed on 09/10/2015.
  */
 public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener, OnNewPageToBeDownloadedListener, View.OnClickListener, SearchTaskListener, SortTaskListener {
-
+    private static final String LOG_TAG = CatalogoActivity.class.getSimpleName();
     private RecyclerView recycler;
 
     private List<Branch> branches;
@@ -41,6 +40,8 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     private View searchButton;
     private SearchTask searchTask;
     private SortTask sortTask;
+    private int actualPageToBeRendered;
+    private EditText searchInputTextField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        this.searchInputTextField = (EditText) this.findViewById(R.id.search_field);
 
         this.orderButton = this.findViewById(R.id.order_button);
         this.orderButton.setOnClickListener(this);
@@ -70,6 +73,16 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     }
 
     @Override
+    protected void onStop() {
+        AsyncTaskUtils.cancelTask(this.sortTask);
+        AsyncTaskUtils.cancelTask(this.searchTask);
+
+        SingletonRequestQueue.getInstance(this).cancelAllRequests();
+
+        super.onStop();
+    }
+
+    @Override
     public void onSuccess(SearchResult response) {
         if(this.branches==null){
             this.branches = new ArrayList<>();
@@ -79,23 +92,22 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         this.renderizarListado();
     }
 
-    private void renderizarListado() {
-        if(this.recycler!=null && this.recycler.getAdapter()!=null) {
-            this.recycler.getAdapter().notifyDataSetChanged();
-        }
-    }
-
     @Override
     public void onError(VolleyError error) {
-
-    }
-
-    private void obtenerCatalogoPaginado(int pagina){
-        CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, pagina, this);
+        Log.e(LOG_TAG, error.toString());
+        Snackbar.make(this.orderButton, this.getString(R.string.request_to_branches_with_error), Snackbar.LENGTH_INDEFINITE)
+                .setAction(getResources().getString(R.string.no_result_for_search_another_try), new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        CatalogoActivity.this.obtenerCatalogoPaginado(CatalogoActivity.this.actualPageToBeRendered);
+                    }
+                })
+                .show();
     }
 
     @Override
     public void onNewPageToLoad(int page) {
+        this.actualPageToBeRendered = page;
         this.obtenerCatalogoPaginado(page);
     }
 
@@ -113,12 +125,14 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     }
 
     @Override
-    public void searchDone(List<Branch> branches) {
-
+    public void searchDone(List<Branch> filteredBranches) {
+        this.branches = filteredBranches;
+        this.renderizarListado();
     }
 
     @Override
-    public void sortDone(List<Branch> branc) {
+    public void sortDone(List<Branch> sorteredBranches) {
+        this.branches = sorteredBranches;
         this.renderizarListado();
     }
 
@@ -130,8 +144,27 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     }
 
     private void doSearch() {
+        String query = this.searchInputTextField.getText().toString();
+        if(!query.isEmpty()){
+            if(AsyncTaskUtils.isPossibleToLaunchTask(this.searchTask)) {
+                Branch dummyBranch = new Branch();
+                dummyBranch.setName(query);
 
-        //this.searchTask = new SearchTask(this, this.branches, this);
-        //this.searchTask.execute();
+                this.searchTask = new SearchTask(this, this.branches, this);
+                this.searchTask.execute(dummyBranch);
+            }
+        }else{
+
+        }
+    }
+
+    private void obtenerCatalogoPaginado(int pagina){
+        CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, pagina, this);
+    }
+
+    private void renderizarListado() {
+        if(this.recycler!=null && this.recycler.getAdapter()!=null) {
+            this.recycler.getAdapter().notifyDataSetChanged();
+        }
     }
 }

@@ -18,13 +18,12 @@ public class CustomOnScrollListener extends RecyclerView.OnScrollListener{
 
     @Override
     public void onScrolled(RecyclerView recyclerview, int dx, int dy) {
-        int visibleItemCount = layoutManager.getChildCount();
-        int totalItemCount = layoutManager.getItemCount();
-        int pastVisiblesItems = layoutManager.findFirstVisibleItemPosition();
-
+        int visibleItemCount = this.layoutManager.getChildCount();
+        int totalItemCount = this.layoutManager.getItemCount();
+        int pastVisiblesItems = this.layoutManager.findFirstVisibleItemPosition();
 
         if ((visibleItemCount + pastVisiblesItems)
-                >= (totalItemCount - 2)) {
+                >= (totalItemCount - 1)) {
             //if (loading) {
             //    loading = false;
                 this.pagina++;

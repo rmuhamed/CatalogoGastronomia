@@ -26,8 +26,8 @@ public class SingletonRequestQueue {
     }
 
     public RequestQueue getRequestQueue() {
-        if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(context.getApplicationContext());
+        if (this.requestQueue == null) {
+            this.requestQueue = Volley.newRequestQueue(context.getApplicationContext());
         }
         return requestQueue;
     }
@@ -44,16 +44,4 @@ public class SingletonRequestQueue {
             }
         });
     }
-
-    public void cancelNotaRequests() {
-        this.getRequestQueue().cancelAll(new RequestQueue.RequestFilter() {
-            @Override
-            public boolean apply(Request<?> request) {
-                String tag = (String) request.getTag();
-                Log.i(LOG_TAG, String.format("%s %s", "Se cancela la nota con tag: ", tag != null ? tag.toString() : ""));
-                return tag!=null && tag.equalsIgnoreCase("nota");
-            }
-        });
-    }
-
 }
