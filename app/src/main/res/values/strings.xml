@@ -3,82 +3,21 @@
 
     <string name="go_back">VOLVER</string>
     <string name="alert_title">¡Atención!</string>
-    <string name="associated_actions">Desplegar acciones asociadas</string>
     <string name="ready">Listo</string>
     <string name="OK">OK</string>
     <string name="CANCEL">CANCELAR</string>
     <string name="X">X</string>
     <string name="loading">Cargando &#8230;</string>
     <string name="choose_one">"Seleccionar uno &#8230;"</string>
-    <string name="kilometers">km</string>
     <string name="close">Cerrar</string>
-    <!-- Acitivy Titles -->
-    <string name="activity_home_name">Home</string>
-    <string name="activity_settings_name">AJUSTES GENERALES</string>
-    <string name="activity_chose_your_card_name">Seleccioná tu tarjeta</string>
-    <string name="activity_app_intro_name">Introducción</string>
-    <string name="activity_refine_filters">FILTROS DE BÚSQUEDA</string>
-
-    <!-- Navigation Drawer -->
-    <string name="drawer_facebook_option">Facebook</string>
-    <string name="drawer_twitter_option">Twitter</string>
-    <string name="drawer_google_plus_option">Google+</string>
-    <string name="drawer_settings_option">Ajustes generales</string>
-    <string name="app_drawer">Menú desplegable</string>
-    <string name="dummy_drawer_list_item">Drawer list item</string>
-    <string name="open_drawer">Desplegar menú</string>
-    <string name="close_drawer">Cerrar menú</string>
-
-    <!-- View Pager -->
-    <string name="viewpager_close_to_me_section">Cerca mío</string>
-    <string name="viewpager_categories">Categorías</string>
-    <string name="viewpager_my_favorites">Favoritos</string>
-    <string name="viewpager_outstanding">Destacados</string>
-    <string name="viewpager_history">Ult. búsquedas</string>
 
     <!-- Actionbar - Search -->
     <string name="search_hint">Buscar</string>
-    <string name="map_hint">Mapa</string>
-    <string name="action_bar_search_hint">¿Qué buscás?</string>
-
-    <!-- Activity - Home Activity - Categories Fragment -->
-    <string name="category_food_title">GASTRONOMÍA</string>
-    <string name="category_food_subtitle">liberá tus sentidos</string>
-    <string name="category_entertainment_title">ENTRETENIMIENTO</string>
-    <string name="category_entertainment_subtitle">diversión asegurada</string>
-    <string name="category_personalcare_title">CUIDADO PERSONAL</string>
-    <string name="category_personalcare_subtitle">sentite libre</string>
-    <string name="category_tourism_title">TURÍSMO</string>
-    <string name="category_tourism_subtitle">conocé el mundo</string>
-    <string name="category_fashion_title">MODA</string>
-    <string name="category_fashion_subtitle">lucí tu belleza</string>
-    <string name="other_category_title">MÁS CATEGORÍAS</string>
-    <string name="other_category_subtitle">lugares por visitar</string>
-
-    <!-- Activity - SettingsActivity -->
-    <string name="choose_your_card">Seleccioná tu tarjeta</string>
-    <string name="settings">Configuraciones</string>
-    <string name="app_intro">Intro de bienvenida</string>
-    <string name="notifications_and_advertisements">Avisos y Notificaciones</string>
-    <string name="premium_card">Premium</string>
-    <string name="classic_card">Classic</string>
 
     <!-- Acitivty - SearchResultsActivity -->
     <string name="no_result_for_search">mmm &#8230; No tenemos nada con esa búqueda</string>
     <string name="no_result_for_search_another_try">¡Otra chance más!</string>
     <string name="without_results">No se encontraron resultados</string>
-
-    <!-- APP Introduction Activity -->
-    <string name="begin_your_experience">COMENZÁ TU EXPERIENCIA</string>
-    <string name="app_intro_firstscreen_label">\"El camino recorrido es mucho más importante \n que el solo llegar\"</string>
-    <string name="app_intro_secondscreen_label">\"Cultura es lo que queda cuando \n se olvida todo lo que se aprendió\"</string>
-    <string name="app_intro_thirdscreen_label">\"La belleza comienza con la decisión \n de ser uno mismo\"</string>
-    <string name="app_intro_fourthscreen_label">\"No existe modernidad \n sin una buena tradición\"</string>
-    <string name="app_intro_fifthscreen_label">\"La riqueza del regalo perfecto \n radica en el propio presente\"</string>
-
-    <!-- Chose Your Card Activity -->
-    <string name="premium_card_description">Tarjeta Club La Nación PREMIMUM</string>
-    <string name="classic_card_description">Tarjeta Club La Nación CLASSIC</string>
 
     <!-- AsyncTask ProgressDialogs -->
     <string name="downloaing_outstanding">Cargando beneficios destacados</string>
@@ -110,180 +49,12 @@
     <string name="error_during_download_alert_title">Parece que tenemos incovenientes!</string>
     <string name="error_during_download_alert_message">No pudimos recuperar la información. Intentá nuevamente en unos momentos!</string>
 
-    <!-- Fragment - MyFavorites -->
-    <string name="without_favorites">No se han añadido favoritos</string>
-    <string name="not_saved_favorites_label">¡Ups&#8230;! Aún no guardaste nada \n en tu lista de favoritos.</string>
-    <string name="how_to_add_favorites_label">Para agregar un comercio a tu lista de favoritos presioná el botón ♥ \n ubicado al pie de cada beneficio</string>
-    <string name="empty_favorites_list">Vaciar lista</string>
-    <string name="alert_erased_favourites">Vaciaste tu lista de favoritos. ¡Volvé a llenarla!</string>
-    <string name="alert_erase_favourites_confirm">¿Seguro que querés borrar tus favoritos?</string>
-    <string name="erase_favourites_content_description">Eliminar los favoritos</string>
-
-    <!-- InfoWindow -->
-    <string name="dummy_infowindow_title">TÍTULO</string>
-    <string name="dummy_infowindow_category_name">Categoría</string>
-    <string name="dummy_infowindow_address">Vedia 3626</string>
-    <string name="dummy_infowindow_phone">Tel: 08001111111</string>
-    <string name="dummy_infowindow_distance_to_place">1.2 km</string>
-    <string name="infowindow_more_info">+ INFO</string>
-    <string name="infowindow_your_position">Tu ubicación actual</string>
-    <string name="phone_contentdescription">Teléfono</string>
-
-    <!-- ViewItem -->
-    <string name="establishment_logo_contentdescription">Logo del establecimiento</string>
-    <string name="establishment_beneifit_contentdescription">Imagen correspondiente al beneficio</string>
-    <string name="add_to_your_favourites">Favorito</string>
-    <string name="share_it">Compartilo</string>
-    <string name="description">Descripción</string>
-    <string name="statements_and_conditions">Bases y condiciones</string>
-    <string name="alert_removed_favourite">Quitaste este establecimiento de tu lista de favoritos</string>
-    <string name="alert_added_favourite">Agregaste este establecimiento a tu lista de favoritos</string>
-    <string name="title_of_item_to_be_shared">Aprovechen estos descuentos de Club LA NACION </string>
-    <string name="text_of_item_to_be_shared">Aprovechen estos descuentos de Club LA NACION \n http://club.lanacion.com.ar/beneficio?id=%1$s</string>
-    <string name="share_intent_options_title">¿Cómo deseas compartirlo?</string>
-    <string name="services">SERVICIOS</string>
-    <string name="smoke_service_contentdescription">Permitido fumar</string>
-    <string name="horse_service_contentdescription">Entretenimento</string>
-    <string name="parking_service_contentdescription">Posee estacionamiento privado</string>
-    <string name="phone_service_contentdescription">Posee teléfono. Reservas</string>
-    <string name="world_service_contentdescription">Internacional</string>
-    <string name="delivery_service_contentdescription">Menú ejecutivo</string>
-    <string name="wifi_service_contentdescription">El establecimiento posee Wifi</string>
-    <string name="copa_service_contentdescription">Copa</string>
-    <string name="without_description">Sin descripción</string>
-    <string name="map_to_fullscreen">Visualizar el mapa en pantalla completa</string>
-
-    <!-- Analytics -->
-    <string name="HOME">HOME</string>
-    <string name="SEARCH">LUPA Search</string>
-    <string name="LISTING">LISTING</string>
-    <string name="CATEG">Categ</string>
-    <string name="CLOSE_TO_ME">CERCA MIO</string>
-    <string name="FAVOURITES">FAVORITOS</string>
-    <string name="OUTSTANDINGS">DESTACADOS</string>
-    <string name="VIEW_ITEM">ITEM VIEW</string>
-    <string name="ADJUSTEMENTS">AJUSTES</string>
-    <string name="SHARE_BENEFIT_CATEGORY">Compartir</string>
-    <string name="SHARE_BENEFIT_ACTION">Compartir</string>
-    <string name="FAVOURITE_CATEGORY">Favoritos</string>
-    <string name="FAVOURITE_ACTION_ADD">Agregar</string>
-    <string name="FAVOURITE_ACTION_REMOVE">Quitar</string>
-
     <!-- Validations -->
     <string name="no_internet_connection_title">Atención!</string>
     <string name="no_internet_connection_message">Es posible que tu conexión a internet no esté funcionando bien</string>
     <string name="no_gps_enabled_title">Atención!</string>
     <string name="no_gps_enabled_message">Activa la ubicación en la configuración de tu dispositivo para encontrar los beneficios más cerca tuyo</string>
 
-    <!-- Activity - Refine filters -->
-    <string name="refine_filters_title">FILTROS DE BÚSQUEDA</string>
-    <string name="remove_filters_applied">Quitar filtros seleccionados</string>
-    <string name="benefit_type">Tipo de Beneficio</string>
-    <string name="frequency">Frecuencia</string>
-    <string name="card">Tarjeta</string>
-    <string name="category">Categoría</string>
-    <string name="subcategory">Sub-Categoría</string>
-    <string name="location">Ubicación</string>
-    <string name="circuit">Circuíto</string>
-    <string name="exclusive_benefits">Beneficios exclusivos</string>
-    <string name="refine_filters_apply">APLICAR FILTROS</string>
-    <string name="dummy_refine_filter_criteria_item_label">3 cutoas HSBC</string>
-    <string name="dummy_refine_filter_criteria_count">324</string>
-    <string name="alert_dialog_clearfilters_title">¡Vas a limpiar los filtros aplicados!</string>
-    <string name="alert_dialog_clearfilters_message">Serán removidos y volverás a la pantalla anterior. \n ¿Estás seguro?</string>
-
-    <!-- Activity - ListingMap -->
-    <string name="center_over_user_location">Visualizar mi posición</string>
-
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
-
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
-
-        "Bold, graphic, intentional.\n\n"
-
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
-
-        "Motion provides meaning.\n\n"
-
-        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
-        "inflection points that initiate motion, transforming the whole design.\n"
-        "All action takes place in a single environment. Objects are presented to the user without "
-        "breaking the continuity of experience even as they transform and reorganize.\n"
-        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
-        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
-
-        "3D world.\n\n"
-
-        "The material environment is a 3D space, which means all objects have x, y, and z "
-        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
-        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
-        "position along the z-axis and has a standard 1dp thickness.\n"
-        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
-        "emulated by manipulating the y-axis.\n\n"
-
-        "Light and shadow.\n\n"
-
-        "Within the material environment, virtual lights illuminate the scene. Key lights create "
-        "directional shadows, while ambient light creates soft shadows from all angles.\n"
-        "Shadows in the material environment are cast by these two light sources. In Android "
-        "development, shadows occur when light sources are blocked by sheets of material at "
-        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
-        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
-
-        "Resting elevation.\n\n"
-
-        "All material objects, regardless of size, have a resting elevation, or default elevation "
-        "that does not change. If an object changes elevation, it should return to its resting "
-        "elevation as soon as possible.\n\n"
-
-        "Component elevations.\n\n"
-
-        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
-        "does not vary from 6dp in one app to 16dp in another app).\n"
-        "Components may have different resting elevations across platforms, depending on the depth "
-        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
-
-        "Responsive elevation and dynamic elevation offsets.\n\n"
-
-        "Some component types have responsive elevation, meaning they change elevation in response "
-        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
-        "changes are consistently implemented using dynamic elevation offsets.\n"
-        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
-        "to the component’s resting state. They ensure that elevation changes are consistent "
-        "across actions and component types. For example, all components that lift on press have "
-        "the same elevation change relative to their resting elevation.\n"
-        "Once the input event is completed or cancelled, the component will return to its resting "
-        "elevation.\n\n"
-
-        "Avoiding elevation interference.\n\n"
-
-        "Components with responsive elevations may encounter other components as they move between "
-        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
-        "through other material, components avoid interfering with one another any number of ways, "
-        "whether on a per component basis or using the entire app layout.\n"
-        "On a component level, components can move or be removed before they cause interference. "
-        "For example, a floating action button (FAB) can disappear or move off screen before a "
-        "user picks up a card, or it can move if a snackbar appears.\n"
-        "On the layout level, design your app layout to minimize opportunities for interference. "
-        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
-        "when a user tries to pick up one of cards.\n\n"
-    </string>
     <string name="action_settings">Settings</string>
     <string name="request_to_branches_with_error">Tenemos incovenientes para presentarte más establecimientos...</string>
 </resources>

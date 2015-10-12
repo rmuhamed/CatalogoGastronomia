@@ -38,8 +38,7 @@
             android:id="@+id/listing_item_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/establishment_beneifit_contentdescription" />
+            android:adjustViewBounds="true"/>
 
         <include layout="@layout/listing_item_establishment" />
 

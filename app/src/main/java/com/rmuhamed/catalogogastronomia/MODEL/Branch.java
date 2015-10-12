@@ -26,8 +26,7 @@ public class Branch implements Parcelable{
 	private double Longitude;
 
 	private int Votes;
-	
-	private List<Benefit> Benefits;
+
 	private List<ImageBranch> ImagesBranch;
 	private List<ImageFather> ImagesFather;
 	
@@ -63,8 +62,7 @@ public class Branch implements Parcelable{
 		this.Latitude = in.readDouble();
 		this.Longitude = in.readDouble();
 		this.Votes = in.readInt();
-		
-		this.Benefits = in.readArrayList(Benefit.class.getClassLoader());
+
 		this.ImagesFather = in.readArrayList(ImageFather.class.getClassLoader());
 		this.ImagesBranch = in.readArrayList(ImageBranch.class.getClassLoader());
 	}
@@ -205,14 +203,6 @@ public class Branch implements Parcelable{
 		Ciudad = ciudad;
 	}
 
-	public List<Benefit> getBenefits() {
-		return Benefits;
-	}
-
-	public void setBenefits(List<Benefit> benefits) {
-		Benefits = benefits;
-	}
-
 	public List<ImageBranch> getImagesBranch() {
 		return ImagesBranch;
 	}
@@ -253,7 +243,6 @@ public class Branch implements Parcelable{
 		destiny.writeDouble(this.Latitude);
 		destiny.writeDouble(this.Longitude);
 		destiny.writeInt(this.Votes);
-		destiny.writeList(this.Benefits);
 		destiny.writeList(this.ImagesFather);
 		destiny.writeList(this.ImagesBranch);
 	}
