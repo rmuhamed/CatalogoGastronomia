@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 public class CustomOnScrollListener extends RecyclerView.OnScrollListener{
     private final OnNewPageToBeDownloadedListener listener;
     private LinearLayoutManager layoutManager;
-    private int pagina;
+    private int pagina = 1;
 
     public CustomOnScrollListener(LinearLayoutManager layoutManager, OnNewPageToBeDownloadedListener listener) {
         this.layoutManager = layoutManager;
@@ -22,15 +22,10 @@ public class CustomOnScrollListener extends RecyclerView.OnScrollListener{
         int totalItemCount = this.layoutManager.getItemCount();
         int pastVisiblesItems = this.layoutManager.findFirstVisibleItemPosition();
 
-        if ((visibleItemCount + pastVisiblesItems)
-                >= (totalItemCount)) {
-            //if (loading) {
-            //    loading = false;
-                this.pagina++;
+        if ((visibleItemCount + pastVisiblesItems) >= (totalItemCount)) {
+            this.pagina++;
 
-                this.listener.onNewPageToLoad(this.pagina);
-
-            //}
+            this.listener.onNewPageToLoad(this.pagina);
         }
 
     }

@@ -27,6 +27,7 @@ import com.rmuhamed.catalogogastronomia.UI.listener.SortTaskListener;
 import com.rmuhamed.catalogogastronomia.UTILS.AsyncTaskUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -44,6 +45,9 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     private int actualPageToBeRendered;
     private EditText searchInputTextField;
     private boolean filterApplied;
+    private boolean firstTime;
+
+    private LinearLayoutManager recyclerLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +57,13 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar);
         this.setSupportActionBar(toolbar);
 
-        this.branches = new ArrayList<>();
+        this.branches = Collections.synchronizedList(new ArrayList<Branch>());
         this.filterApplied = false;
+        this.firstTime = true;
+        this.actualPageToBeRendered = 1;
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        this.recyclerLayoutManager = new LinearLayoutManager(this);
+        this.recyclerLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         this.searchInputTextField = (EditText) this.findViewById(R.id.search_field);
 
@@ -68,11 +74,10 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         this.searchButton.setOnClickListener(this);
 
         this.recycler = (RecyclerView) this.findViewById(R.id.catalogo_list);
-        this.recycler.setLayoutManager(layoutManager);
+        this.recycler.setLayoutManager(this.recyclerLayoutManager);
         this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
-        this.recycler.addOnScrollListener(new CustomOnScrollListener(layoutManager, this));
 
-        this.obtenerCatalogoPaginado(0);
+        this.obtenerCatalogoPaginado(this.actualPageToBeRendered);
     }
 
     @Override
@@ -87,12 +92,28 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
 
     @Override
     public void onSuccess(SearchResult response) {
-        if(this.branches==null){
+
+        if(response!=null && response.getBranches()!=null) {
+            //Attach OnScrollListener for recyclerView
+            if (this.firstTime) {
+                this.firstTime = false;
+                this.recycler.addOnScrollListener(new CustomOnScrollListener(this.recyclerLayoutManager, this));
+            }
+
+
+
+            this.actualizarElementos(response.getBranches());
+            this.renderizarListado(false);
+        }
+    }
+
+
+    private void actualizarElementos(List<Branch> remoteBranches) {
+        if (this.branches == null) {
             this.branches = new ArrayList<>();
         }
 
-        this.branches.addAll(response.getBranches());
-        this.renderizarListado(false);
+        this.branches.addAll(remoteBranches);
     }
 
     @Override
@@ -195,7 +216,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         //Update search button
         this.searchButton.setImageDrawable(this.getResources().getDrawable(R.drawable.search));
         //Reset data and make a request to API Rest
-        this.branches = new ArrayList<>();
+        this.branches = Collections.synchronizedList(new ArrayList<Branch>());
         this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
         this.obtenerCatalogoPaginado(0);
     }
