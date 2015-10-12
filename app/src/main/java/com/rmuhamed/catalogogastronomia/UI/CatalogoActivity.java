@@ -1,6 +1,7 @@
 package com.rmuhamed.catalogogastronomia.UI;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,8 +37,8 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     private RecyclerView recycler;
 
     private List<Branch> branches;
-    private View orderButton;
-    private View searchButton;
+    private FloatingActionButton orderButton;
+    private FloatingActionButton searchButton;
     private SearchTask searchTask;
     private SortTask sortTask;
     private int actualPageToBeRendered;
@@ -60,10 +61,10 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
 
         this.searchInputTextField = (EditText) this.findViewById(R.id.search_field);
 
-        this.orderButton = this.findViewById(R.id.order_button);
+        this.orderButton = (FloatingActionButton) this.findViewById(R.id.order_button);
         this.orderButton.setOnClickListener(this);
 
-        this.searchButton = this.findViewById(R.id.search_button);
+        this.searchButton = (FloatingActionButton) this.findViewById(R.id.search_button);
         this.searchButton.setOnClickListener(this);
 
         this.recycler = (RecyclerView) this.findViewById(R.id.catalogo_list);
@@ -160,7 +161,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
                 //Update flag
                 this.filterApplied = true;
                 //Update drawable for search button container
-                this.searchButton.setBackgroundResource(R.drawable.ic_trash);
+                this.searchButton.setImageDrawable(this.getResources().getDrawable(R.drawable.ic_trash));
 
                 Branch dummyBranch = new Branch();
                 dummyBranch.setName(query);
@@ -180,6 +181,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     private void renderizarListado(boolean redraw) {
         if(redraw){
             this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
+            this.recycler.getAdapter().notifyDataSetChanged();
         }else {
             if (this.recycler != null && this.recycler.getAdapter() != null) {
                 this.recycler.getAdapter().notifyDataSetChanged();
@@ -191,8 +193,10 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         //Update flag
         this.filterApplied = false;
         //Update search button
-        this.searchButton.setBackgroundResource(R.drawable.search);
-
+        this.searchButton.setImageDrawable(this.getResources().getDrawable(R.drawable.search));
+        //Reset data and make a request to API Rest
+        this.branches = new ArrayList<>();
+        this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
         this.obtenerCatalogoPaginado(0);
     }
 }
