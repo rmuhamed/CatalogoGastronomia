@@ -42,6 +42,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     private SortTask sortTask;
     private int actualPageToBeRendered;
     private EditText searchInputTextField;
+    private boolean filterApplied;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         this.setSupportActionBar(toolbar);
 
         this.branches = new ArrayList<>();
+        this.filterApplied = false;
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -115,7 +117,11 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.search_button:
-                this.doSearch();
+                if(!this.filterApplied) {
+                    this.doSearch();
+                }else{
+                    this.removeFilters();
+                }
                 break;
 
             case R.id.order_button:
@@ -151,6 +157,11 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         String query = this.searchInputTextField.getText().toString();
         if(!query.isEmpty()){
             if(AsyncTaskUtils.isPossibleToLaunchTask(this.searchTask)) {
+                //Update flag
+                this.filterApplied = true;
+                //Update drawable for search button container
+                this.searchButton.setBackgroundResource(R.drawable.ic_trash);
+
                 Branch dummyBranch = new Branch();
                 dummyBranch.setName(query);
 
@@ -174,5 +185,14 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
                 this.recycler.getAdapter().notifyDataSetChanged();
             }
         }
+    }
+
+    private void removeFilters() {
+        //Update flag
+        this.filterApplied = false;
+        //Update search button
+        this.searchButton.setBackgroundResource(R.drawable.search);
+
+        this.obtenerCatalogoPaginado(0);
     }
 }
