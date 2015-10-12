@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.rmuhamed.catalogogastronomia.API.CatalogoAPI;
@@ -101,7 +102,6 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
             }
 
 
-
             this.actualizarElementos(response.getBranches());
             this.renderizarListado(false);
         }
@@ -156,7 +156,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     public void searchDone(List<Branch> filteredBranches) {
         this.branches = filteredBranches;
         if(this.branches.isEmpty()){
-            //TODO: RM - Display none results container
+            Toast.makeText(this, this.getString(R.string.query_with_no_results), Toast.LENGTH_SHORT).show();
         }else {
             this.renderizarListado(true);
         }
@@ -191,7 +191,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
                 this.searchTask.execute(dummyBranch);
             }
         }else{
-
+            Toast.makeText(this, R.string.query_field_empty, Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -57,4 +57,6 @@
 
     <string name="action_settings">Settings</string>
     <string name="request_to_branches_with_error">Tenemos incovenientes para presentarte más establecimientos...</string>
+    <string name="query_with_no_results">No se encontraron resultados</string>
+    <string name="query_field_empty">Debes completar el campo de búsqueda primero!</string>
 </resources>

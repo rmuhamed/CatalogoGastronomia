@@ -36,7 +36,8 @@ public class ViewHolderItemDeCatalogo extends RecyclerView.ViewHolder {
 
         if (unBranch.getImagesFather()!=null && !unBranch.getImagesFather().isEmpty()) {
             int width = ((WindowManager) this.contexto.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth();
-            String imageRemoteUrl = String.format("%s?width=%f", unBranch.getImagesFather().get(0).getURL(), width*0.5) ;
+
+            String imageRemoteUrl = String.format("%s?width=%f", unBranch.getImagesFather().get(0).getURL(), width*0.8) ;
 
             CatalogoApplication.class.cast(this.contexto.getApplicationContext()).showImage(imageRemoteUrl, imagen);
         }
