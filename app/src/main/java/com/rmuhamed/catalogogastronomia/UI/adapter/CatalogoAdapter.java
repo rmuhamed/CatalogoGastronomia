@@ -29,7 +29,7 @@ public class CatalogoAdapter extends RecyclerView.Adapter<ViewHolderItemDeCatalo
 
     @Override
     public ViewHolderItemDeCatalogo onCreateViewHolder(ViewGroup parent, int viewType) {
-        View catalogoItemView = LayoutInflater.from(this.contexto).inflate(R.layout.listing_item, null);
+        View catalogoItemView = LayoutInflater.from(this.contexto).inflate(R.layout.catalogo_item, null);
         ViewHolderItemDeCatalogo viewHolder = new ViewHolderItemDeCatalogo(catalogoItemView, this.contexto);
         return viewHolder;
     }

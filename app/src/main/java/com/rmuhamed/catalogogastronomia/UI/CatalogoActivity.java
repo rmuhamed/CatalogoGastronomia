@@ -211,6 +211,9 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     }
 
     private void removeFilters() {
+        if(this.searchInputTextField.getText()!=null) {
+            this.searchInputTextField.getText().clear();
+        }
         //Update flag
         this.filterApplied = false;
         //Update search button
