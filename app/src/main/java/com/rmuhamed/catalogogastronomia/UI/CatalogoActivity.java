@@ -164,6 +164,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
 
     private void renderizarListado() {
         if(this.recycler!=null && this.recycler.getAdapter()!=null) {
+            this.recycler.invalidate();
             this.recycler.getAdapter().notifyDataSetChanged();
         }
     }

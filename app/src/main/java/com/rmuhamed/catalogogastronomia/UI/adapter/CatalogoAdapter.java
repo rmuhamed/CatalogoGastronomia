@@ -51,8 +51,6 @@ public class CatalogoAdapter extends RecyclerView.Adapter<ViewHolderItemDeCatalo
         int count = 0;
         if(this.branchList!=null && !this.branchList.isEmpty()){
             count = this.branchList.size();
-        }else{
-            Log.e(LOG_TAG+" "+"getItemCount", "La lista es nula o vacía");
         }
 
         return count;

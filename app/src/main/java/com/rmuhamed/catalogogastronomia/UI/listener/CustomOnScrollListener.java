@@ -23,7 +23,7 @@ public class CustomOnScrollListener extends RecyclerView.OnScrollListener{
         int pastVisiblesItems = this.layoutManager.findFirstVisibleItemPosition();
 
         if ((visibleItemCount + pastVisiblesItems)
-                >= (totalItemCount - 1)) {
+                >= (totalItemCount)) {
             //if (loading) {
             //    loading = false;
                 this.pagina++;
