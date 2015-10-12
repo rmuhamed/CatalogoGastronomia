@@ -39,7 +39,7 @@ public class SearchTask extends AsyncTask<Branch, Void, List<Branch>> {
 
         for(Branch aBranch : this.originalList){
             if(aBranch.equals(dummyBranch)){
-                result.add(dummyBranch);
+                result.add(aBranch);
             }
         }
 

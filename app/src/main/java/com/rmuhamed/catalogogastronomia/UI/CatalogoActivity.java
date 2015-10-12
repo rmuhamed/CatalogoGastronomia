@@ -89,7 +89,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         }
 
         this.branches.addAll(response.getBranches());
-        this.renderizarListado();
+        this.renderizarListado(false);
     }
 
     @Override
@@ -127,13 +127,17 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     @Override
     public void searchDone(List<Branch> filteredBranches) {
         this.branches = filteredBranches;
-        this.renderizarListado();
+        if(this.branches.isEmpty()){
+            //TODO: RM - Display none results container
+        }else {
+            this.renderizarListado(true);
+        }
     }
 
     @Override
     public void sortDone(List<Branch> sorteredBranches) {
         this.branches = sorteredBranches;
-        this.renderizarListado();
+        this.renderizarListado(true);
     }
 
     private void doSort() {
@@ -162,10 +166,13 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, pagina, this);
     }
 
-    private void renderizarListado() {
-        if(this.recycler!=null && this.recycler.getAdapter()!=null) {
-            this.recycler.invalidate();
-            this.recycler.getAdapter().notifyDataSetChanged();
+    private void renderizarListado(boolean redraw) {
+        if(redraw){
+            this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
+        }else {
+            if (this.recycler != null && this.recycler.getAdapter() != null) {
+                this.recycler.getAdapter().notifyDataSetChanged();
+            }
         }
     }
 }
