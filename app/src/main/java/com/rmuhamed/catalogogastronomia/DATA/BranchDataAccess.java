@@ -1,7 +1,8 @@
-package com.rmuhamed.catalogogastronomia.BUILDER;
+package com.rmuhamed.catalogogastronomia.DATA;
 
 import android.content.Context;
 
+import com.rmuhamed.catalogogastronomia.BUILDER.IBuilder;
 import com.rmuhamed.catalogogastronomia.DATA.SingleDataAccess;
 import com.rmuhamed.catalogogastronomia.MODEL.IEntity;
 
