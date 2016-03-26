@@ -3,8 +3,10 @@
  */
 package com.rmuhamed.catalogogastronomia.DATA;
 
+
+import com.rmuhamed.catalogogastronomia.MODEL.IEntity;
+
 import java.util.Collection;
-import com.leavingcar.android.common.entity.IEntity;
 
 /**
  * @author maltamira

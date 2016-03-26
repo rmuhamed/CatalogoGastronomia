@@ -1,17 +1,16 @@
 package com.rmuhamed.catalogogastronomia.DATA;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
-import com.crittercism.app.Crittercism;
-import com.leavingcar.android.common.entity.IEntity;
-import com.leavingcar.android.common.utils.DataConversionHelper;
-import com.leavingcar.android.data.access.builder.IBuilder;
+import com.rmuhamed.catalogogastronomia.BUILDER.IBuilder;
+import com.rmuhamed.catalogogastronomia.MODEL.IEntity;
+import com.rmuhamed.catalogogastronomia.UTILS.DataConversionHelper;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 
 public abstract class SingleDataAccess extends DataAccess implements ISingleDataAccess {
 
@@ -33,7 +32,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 			 quantity = this.database.insert(this.getTableName(), null, this.builder.createValues(entity));
 			
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("create", "Fails inserting entity", e);
 		} finally {
 			if(this.database!=null && !this.database.inTransaction()){
@@ -51,7 +49,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 		try {
 			quantity = this.database.update(this.getTableName(), this.builder.createValues(entity), this.getIdWhereClause(entity), null);
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("update", "Fails updating entity", e);
 		} finally {
 			if(this.database!=null && !this.database.inTransaction()){
@@ -69,7 +66,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 		try {
 			quantity = this.database.delete(this.getTableName(), this.getIdWhereClause(entity), null);
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("delete", "Fails deleting entity", e);
 		} finally {
 			if(this.database!=null && !this.database.inTransaction()){
@@ -87,7 +83,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 		try {
 			quantity = this.database.delete(this.getTableName(), this.getParentIdWhereClauseForId(parentId), null);
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("delete", "Fails deleting entity for parent", e);
 		} finally {
 			if(this.database!=null && !this.database.inTransaction()){
@@ -105,7 +100,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 		try {
 			quantity = this.database.delete(this.getTableName(), whereClause, null);
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("delete", "Fails deleting entity/ies", e);
 		} finally {
 			if(this.database!=null && !this.database.inTransaction()){
@@ -128,7 +122,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 		try {
 			quantity = this.database.delete(this.getTableName(), null, null);
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("deleteAll", "Fails deleting all entities", e);
 		} finally {
 			if(this.database!=null && !this.database.inTransaction()){
@@ -152,7 +145,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 				}
 			}
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("findForId", "Fails finding entity with id", e);
 		} finally {
 			if(cursor!=null){
@@ -180,7 +172,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 				}
 			}
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("Find", "Fails finding entity with parentId", e);
 		} finally {
 			if(cursor!=null){
@@ -211,7 +202,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 				}
 			}
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("findAll", "Fails finding all entities", e);
 		} finally {
 			if(cursor!=null){
@@ -243,7 +233,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 				}
 			}
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("findAll", "Fails finding all entities", e);
 		} finally {
 			if(cursor!=null){
@@ -274,7 +263,6 @@ public abstract class SingleDataAccess extends DataAccess implements ISingleData
 				}
 			}
 		} catch (Exception e) {
-			Crittercism.logHandledException(e);
 			Log.e("query", "Fails executign query with selection string", e);
 		} finally {
 			if(cursor!=null){
