@@ -93,24 +93,28 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
 
     @Override
     public void onSuccess(SearchResult response) {
-
-        if(response!=null && response.getBranches()!=null) {
-            //Attach OnScrollListener for recyclerView
-            if (this.firstTime) {
-                this.firstTime = false;
-                this.recycler.addOnScrollListener(new CustomOnScrollListener(this.recyclerLayoutManager, this));
-            }
-
+        if (response != null) {
+            if (response.getBranches() != null && !response.getBranches().isEmpty()){
+                //Attach OnScrollListener for recyclerView
+                if (this.firstTime) {
+                    this.firstTime = false;
+                    this.recycler.addOnScrollListener(new CustomOnScrollListener(this.recyclerLayoutManager, this));
+                }
 
             this.actualizarElementos(response.getBranches());
             this.renderizarListado(false);
+            } else {
+                Log.i(LOG_TAG, "No hay más resultados para presentar");
+            }
+        }else{
+            Log.e(LOG_TAG, "El response es nulo...");
         }
     }
 
 
     private void actualizarElementos(List<Branch> remoteBranches) {
         if (this.branches == null) {
-            this.branches = new ArrayList<>();
+            this.branches = Collections.synchronizedList(new ArrayList<Branch>());
         }
 
         this.branches.addAll(remoteBranches);

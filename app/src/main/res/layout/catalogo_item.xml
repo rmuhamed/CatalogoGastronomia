@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <TextView
             android:id="@+id/listing_item_establishment_name_label"
             android:layout_width="match_parent"
