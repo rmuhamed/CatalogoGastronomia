@@ -48,8 +48,10 @@
             android:id="@+id/search_field"
             android:padding="5dp"
             android:layout_margin="10dp"
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/divider_food_category"
             android:hint="@string/search_hint"/>
 
     <android.support.v7.widget.RecyclerView
