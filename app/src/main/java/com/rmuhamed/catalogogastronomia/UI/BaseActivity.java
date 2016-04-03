@@ -15,7 +15,7 @@ import com.rmuhamed.catalogogastronomia.UTILS.BaseUtils;
 /**
  * Created by rmuhamed on 09/10/2015.
  */
-public class BaseActivity extends AppCompatActivity{
+public abstract class BaseActivity extends AppCompatActivity{
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
