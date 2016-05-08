@@ -36,19 +36,20 @@ import java.util.List;
  */
 public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener, OnNewPageToBeDownloadedListener, View.OnClickListener, SearchTaskListener, SortTaskListener {
     private static final String LOG_TAG = CatalogoActivity.class.getSimpleName();
-    private RecyclerView recycler;
 
-    private List<Branch> branches;
+    private RecyclerView recycler;
+    private LinearLayoutManager recyclerLayoutManager;
+
     private FloatingActionButton orderButton;
     private FloatingActionButton searchButton;
+    private EditText searchInputTextField;
+
     private SearchTask searchTask;
     private SortTask sortTask;
     private int actualPageToBeRendered;
-    private EditText searchInputTextField;
     private boolean filterApplied;
-    private boolean firstTime;
 
-    private LinearLayoutManager recyclerLayoutManager;
+    private List<Branch> branches;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,6 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
 
         this.branches = Collections.synchronizedList(new ArrayList<Branch>());
         this.filterApplied = false;
-        this.firstTime = true;
         this.actualPageToBeRendered = 1;
 
         this.setupLayout();
@@ -82,14 +82,10 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     public void onSuccess(SearchResult response) {
         if (response != null) {
             if (response.getBranches() != null && !response.getBranches().isEmpty()){
-                //Attach OnScrollListener for recyclerView
-                if (this.firstTime) {
-                    this.firstTime = false;
-                    this.recycler.addOnScrollListener(new CustomOnScrollListener(this.recyclerLayoutManager, this));
-                }
+                this.attachScrollListener();
 
-            this.actualizarElementos(response.getBranches());
-            this.renderizarListado(false);
+                this.actualizarElementos(response.getBranches());
+                this.renderizarListado(false);
             } else {
                 Log.i(LOG_TAG, "No hay más resultados para presentar");
             }
@@ -100,9 +96,6 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
 
     @Override
     protected void setupLayout() {
-        this.recyclerLayoutManager = new LinearLayoutManager(this);
-        this.recyclerLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
         this.searchInputTextField = (EditText) this.findViewById(R.id.search_field);
 
         this.orderButton = (FloatingActionButton) this.findViewById(R.id.order_button);
@@ -112,7 +105,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         this.searchButton.setOnClickListener(this);
 
         this.recycler = (RecyclerView) this.findViewById(R.id.catalogo_list);
-        this.recycler.setLayoutManager(this.recyclerLayoutManager);
+        this.recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
     }
 
@@ -168,6 +161,13 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         this.renderizarListado(true);
     }
 
+    private void attachScrollListener(){
+        //Attach OnScrollListener for recyclerView
+        if(this.actualPageToBeRendered == 1) {
+            this.recycler.addOnScrollListener(new CustomOnScrollListener(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false), this));
+        }
+    }
+
     private void actualizarElementos(List<Branch> remoteBranches) {
         if (this.branches == null) {
             this.branches = Collections.synchronizedList(new ArrayList<Branch>());
@@ -210,12 +210,9 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     private void renderizarListado(boolean redraw) {
         if(redraw){
             this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
-            this.recycler.getAdapter().notifyDataSetChanged();
-        }else {
-            if (this.recycler != null && this.recycler.getAdapter() != null) {
-                this.recycler.getAdapter().notifyDataSetChanged();
-            }
         }
+
+        this.recycler.getAdapter().notifyDataSetChanged();
     }
 
     private void removeFilters() {
@@ -227,9 +224,14 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         //Update search button
         this.searchButton.setImageDrawable(this.getResources().getDrawable(R.drawable.search));
         //Reset data and make a request to API Rest
-        this.actualPageToBeRendered = 0;
-        this.branches = Collections.synchronizedList(new ArrayList<Branch>());
-        this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
+        this.resetConfiguration();
         this.obtenerCatalogo();
+    }
+
+    private void resetConfiguration() {
+        this.actualPageToBeRendered = 1;
+        this.branches = Collections.synchronizedList(new ArrayList<Branch>());
+        this.recycler.clearOnScrollListeners();
+        this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
     }
 }
