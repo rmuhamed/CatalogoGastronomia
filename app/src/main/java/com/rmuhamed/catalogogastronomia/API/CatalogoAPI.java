@@ -16,7 +16,7 @@ public class CatalogoAPI {
 
     public static void obtenerCatalogo(String URL, Context contexto, int paginaACargar, final CatalogoAPIListener listener){
         String url = String.format(URL, paginaACargar);
-        JsonRequest jsonRequest = new CatalogoRequest(contexto, url, null,
+        JsonRequest jsonRequest = new CatalogoRequest(url, null,
                 new Response.Listener<SearchResult>() {
 
                     @Override

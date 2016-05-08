@@ -26,7 +26,11 @@ public abstract class BaseActivity extends AppCompatActivity{
         //Database configuration
         DatabaseConfigurator.getInstance().setContext(this);
         DatabaseConfigurator.getInstance().configure(BaseUtils.getApplicationVersionCode(packageInfo), null);
+
+        this.setupLayout();
     }
+
+    protected abstract void setupLayout();
 
     @Nullable
     private PackageInfo getPackageInformation() {
@@ -39,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity{
         return packageInfo;
     }
 
-    public CatalogoApplication getMyApplication() {
+    public CatalogoApplication getApplicationInstance() {
         return (CatalogoApplication) this.getApplicationContext();
     }
 }

@@ -63,22 +63,9 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         this.firstTime = true;
         this.actualPageToBeRendered = 1;
 
-        this.recyclerLayoutManager = new LinearLayoutManager(this);
-        this.recyclerLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        this.setupLayout();
 
-        this.searchInputTextField = (EditText) this.findViewById(R.id.search_field);
-
-        this.orderButton = (FloatingActionButton) this.findViewById(R.id.order_button);
-        this.orderButton.setOnClickListener(this);
-
-        this.searchButton = (FloatingActionButton) this.findViewById(R.id.search_button);
-        this.searchButton.setOnClickListener(this);
-
-        this.recycler = (RecyclerView) this.findViewById(R.id.catalogo_list);
-        this.recycler.setLayoutManager(this.recyclerLayoutManager);
-        this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
-
-        this.obtenerCatalogoPaginado(this.actualPageToBeRendered);
+        this.obtenerCatalogo();
     }
 
     @Override
@@ -111,13 +98,22 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         }
     }
 
+    @Override
+    protected void setupLayout() {
+        this.recyclerLayoutManager = new LinearLayoutManager(this);
+        this.recyclerLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-    private void actualizarElementos(List<Branch> remoteBranches) {
-        if (this.branches == null) {
-            this.branches = Collections.synchronizedList(new ArrayList<Branch>());
-        }
+        this.searchInputTextField = (EditText) this.findViewById(R.id.search_field);
 
-        this.branches.addAll(remoteBranches);
+        this.orderButton = (FloatingActionButton) this.findViewById(R.id.order_button);
+        this.orderButton.setOnClickListener(this);
+
+        this.searchButton = (FloatingActionButton) this.findViewById(R.id.search_button);
+        this.searchButton.setOnClickListener(this);
+
+        this.recycler = (RecyclerView) this.findViewById(R.id.catalogo_list);
+        this.recycler.setLayoutManager(this.recyclerLayoutManager);
+        this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
     }
 
     @Override
@@ -127,7 +123,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
                 .setAction(getResources().getString(R.string.no_result_for_search_another_try), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        CatalogoActivity.this.obtenerCatalogoPaginado(CatalogoActivity.this.actualPageToBeRendered);
+                        CatalogoActivity.this.obtenerCatalogo();
                     }
                 })
                 .show();
@@ -136,7 +132,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     @Override
     public void onNewPageToLoad(int page) {
         this.actualPageToBeRendered = page;
-        this.obtenerCatalogoPaginado(page);
+        this.obtenerCatalogo();
     }
 
     @Override
@@ -172,6 +168,14 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         this.renderizarListado(true);
     }
 
+    private void actualizarElementos(List<Branch> remoteBranches) {
+        if (this.branches == null) {
+            this.branches = Collections.synchronizedList(new ArrayList<Branch>());
+        }
+
+        this.branches.addAll(remoteBranches);
+    }
+
     private void doSort() {
         if(AsyncTaskUtils.isPossibleToLaunchTask(this.sortTask)){
             this.sortTask = new SortTask(this, this.branches, this);
@@ -199,8 +203,8 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         }
     }
 
-    private void obtenerCatalogoPaginado(int pagina){
-        CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, pagina, this);
+    private void obtenerCatalogo(){
+        CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, this.actualPageToBeRendered, this);
     }
 
     private void renderizarListado(boolean redraw) {
@@ -223,8 +227,9 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         //Update search button
         this.searchButton.setImageDrawable(this.getResources().getDrawable(R.drawable.search));
         //Reset data and make a request to API Rest
+        this.actualPageToBeRendered = 0;
         this.branches = Collections.synchronizedList(new ArrayList<Branch>());
         this.recycler.setAdapter(new CatalogoAdapter(this, this.branches));
-        this.obtenerCatalogoPaginado(0);
+        this.obtenerCatalogo();
     }
 }

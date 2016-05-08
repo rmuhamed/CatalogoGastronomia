@@ -23,13 +23,11 @@ import java.io.UnsupportedEncodingException;
 public class CatalogoRequest extends JsonRequest<SearchResult> {
 
     public static final String LOG_TAG = CatalogoRequest.class.getSimpleName();
-    private Context contexto;
     private Response.Listener<SearchResult> listener;
 
-    public CatalogoRequest(Context contexto, String url, String requestBody, Response.Listener<SearchResult> listener, Response.ErrorListener errorListener) {
+    public CatalogoRequest(String url, String requestBody, Response.Listener<SearchResult> listener, Response.ErrorListener errorListener) {
         super(url, requestBody, listener, errorListener);
 
-        this.contexto = contexto;
         this.listener = listener;
 
         /** Timeout **/
