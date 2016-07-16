@@ -26,6 +26,7 @@ import com.rmuhamed.catalogogastronomia.UI.listener.OnNewPageToBeDownloadedListe
 import com.rmuhamed.catalogogastronomia.UI.listener.SearchTaskListener;
 import com.rmuhamed.catalogogastronomia.UI.listener.SortTaskListener;
 import com.rmuhamed.catalogogastronomia.UTILS.AsyncTaskUtils;
+import com.rmuhamed.catalogogastronomia.UTILS.LogConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,8 +38,8 @@ import java.util.List;
 public class CatalogoActivity extends BaseActivity implements CatalogoAPIListener, OnNewPageToBeDownloadedListener, View.OnClickListener, SearchTaskListener, SortTaskListener {
     private static final String LOG_TAG = CatalogoActivity.class.getSimpleName();
 
+
     private RecyclerView recycler;
-    private LinearLayoutManager recyclerLayoutManager;
 
     private FloatingActionButton orderButton;
     private FloatingActionButton searchButton;
@@ -56,18 +57,16 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_catalogo);
 
-        Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar);
-        this.setSupportActionBar(toolbar);
-
-        this.branches = Collections.synchronizedList(new ArrayList<Branch>());
-        this.filterApplied = false;
-        this.actualPageToBeRendered = 1;
+        this.variablesInitialization();
 
         this.setupLayout();
 
-        this.obtenerCatalogo();
+        this.fetchCatalog();
     }
 
+    /**
+     * Callaback for activity lifecycle
+     */
     @Override
     protected void onStop() {
         AsyncTaskUtils.cancelTask(this.sortTask);
@@ -87,15 +86,19 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
                 this.actualizarElementos(response.getBranches());
                 this.renderizarListado(false);
             } else {
-                Log.i(LOG_TAG, "No hay más resultados para presentar");
+                Log.i(LOG_TAG, LogConstants.NO_HAY_MÁS_RESULTADOS_PARA_PRESENTAR);
             }
         }else{
-            Log.e(LOG_TAG, "El response es nulo...");
+            Log.e(LOG_TAG, LogConstants.EL_RESPONSE_ES_NULO);
         }
     }
 
     @Override
     protected void setupLayout() {
+        //TOOLBAR
+        Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar);
+        this.setSupportActionBar(toolbar);
+
         this.searchInputTextField = (EditText) this.findViewById(R.id.search_field);
 
         this.orderButton = (FloatingActionButton) this.findViewById(R.id.order_button);
@@ -116,7 +119,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
                 .setAction(getResources().getString(R.string.no_result_for_search_another_try), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        CatalogoActivity.this.obtenerCatalogo();
+                        CatalogoActivity.this.fetchCatalog();
                     }
                 })
                 .show();
@@ -125,18 +128,14 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     @Override
     public void onNewPageToLoad(int page) {
         this.actualPageToBeRendered = page;
-        this.obtenerCatalogo();
+        this.fetchCatalog();
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.search_button:
-                if(!this.filterApplied) {
-                    this.doSearch();
-                }else{
-                    this.removeFilters();
-                }
+                this.performFilterLogic();
                 break;
 
             case R.id.order_button:
@@ -159,6 +158,14 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
     public void sortDone(List<Branch> sorteredBranches) {
         this.branches = sorteredBranches;
         this.renderizarListado(true);
+    }
+
+    private void performFilterLogic() {
+        if(!this.filterApplied) {
+            this.doSearch();
+        }else{
+            this.removeFilters();
+        }
     }
 
     private void attachScrollListener(){
@@ -203,7 +210,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         }
     }
 
-    private void obtenerCatalogo(){
+    private void fetchCatalog(){
         CatalogoAPI.obtenerCatalogo(CatalogoAPI.BASE_URL, this, this.actualPageToBeRendered, this);
     }
 
@@ -213,6 +220,12 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         }
 
         this.recycler.getAdapter().notifyDataSetChanged();
+    }
+
+    private void variablesInitialization() {
+        this.branches = Collections.synchronizedList(new ArrayList<Branch>());
+        this.filterApplied = false;
+        this.actualPageToBeRendered = 1;
     }
 
     private void removeFilters() {
@@ -225,7 +238,7 @@ public class CatalogoActivity extends BaseActivity implements CatalogoAPIListene
         this.searchButton.setImageDrawable(this.getResources().getDrawable(R.drawable.search));
         //Reset data and make a request to API Rest
         this.resetConfiguration();
-        this.obtenerCatalogo();
+        this.fetchCatalog();
     }
 
     private void resetConfiguration() {
