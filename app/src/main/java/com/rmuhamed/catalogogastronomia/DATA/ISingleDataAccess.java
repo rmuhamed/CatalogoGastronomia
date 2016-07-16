@@ -1,17 +1,10 @@
-/**
- * 
- */
-package com.rmuhamed.catalogogastronomia.DATA;
 
+package com.rmuhamed.catalogogastronomia.DATA;
 
 import com.rmuhamed.catalogogastronomia.MODEL.IEntity;
 
 import java.util.Collection;
 
-/**
- * @author maltamira
- *
- */
 public interface ISingleDataAccess {
 
 	public void beginTransaction();

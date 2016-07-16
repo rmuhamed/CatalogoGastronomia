@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
-public abstract class DataAccess {
+public abstract class DataAccess implements ISingleDataAccess{
 
 	protected Context context = null;
 	protected DatabaseInteractor databaseHelper = null;
